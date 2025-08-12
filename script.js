@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
   // Scroll suave ao clicar nos links do menu
   const links = document.querySelectorAll(".nav a[href^='#']");
   links.forEach(link => {
