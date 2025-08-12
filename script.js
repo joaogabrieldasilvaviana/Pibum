@@ -1,5 +1,3 @@
-// Script Pibum - Interações básicas
-
 document.addEventListener("DOMContentLoaded", function () {
   // Scroll suave ao clicar nos links do menu
   const links = document.querySelectorAll(".nav a[href^='#']");
@@ -21,10 +19,22 @@ document.addEventListener("DOMContentLoaded", function () {
   comprarBtns.forEach(btn => {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
+
       const produto = this.parentElement.querySelector("h4").innerText;
-      alert(`Você selecionou o produto: ${produto}\nEm breve você será redirecionado para finalizar a compra.`);
-      // Aqui no futuro pode ser: redirecionar para página de compra ou adicionar ao carrinho
-      // window.location.href = "/checkout.html";
+      const preco = this.parentElement.querySelector("span").innerText;
+
+      let urlCarrinho;
+
+      if (preco.includes("5.499,00")) {
+        urlCarrinho = "/carrinho-5499.html";
+      } else if (preco.includes("6.299,00")) {
+        urlCarrinho = "/carrinho-6299.html";
+      } else {
+        urlCarrinho = "/carrinho-personalizado.html";
+      }
+
+      // Redireciona para a página do carrinho
+      window.location.href = urlCarrinho;
     });
   });
 });
