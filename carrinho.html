@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho - Pibum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Pibum</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Seu Carrinho</h2>
+    <div class="card" style="padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+      <h3 id="nome-produto"></h3>
+      <p id="preco-produto"></p>
+      <button class="btn">Finalizar Compra</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Pibum. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Captura parâmetros da URL
+    const params = new URLSearchParams(window.location.search);
+    const produto = params.get("produto");
+    const preco = params.get("preco");
+
+    // Exibe os dados na página
+    document.getElementById("nome-produto").textContent = produto || "Produto não especificado";
+    document.getElementById("preco-produto").textContent = preco ? `Preço: ${preco}` : "Preço não informado";
+  </script>
+</body>
+</html>
