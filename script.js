@@ -23,18 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const produto = this.parentElement.querySelector("h4").innerText;
       const preco = this.parentElement.querySelector("span").innerText;
 
-      let urlCarrinho;
-
-      if (preco.includes("5.499,00")) {
-        urlCarrinho = "/carrinho-5499.html";
-      } else if (preco.includes("6.299,00")) {
-        urlCarrinho = "/carrinho-6299.html";
-      } else {
-        urlCarrinho = "/carrinho-personalizado.html";
-      }
-
-      // Redireciona para a página do carrinho
-      window.location.href = urlCarrinho;
+      // Redireciona para carrinho com nome e preço na URL
+      const url = `carrinho.html?produto=${encodeURIComponent(produto)}&preco=${encodeURIComponent(preco)}`;
+      window.location.href = url;
     });
   });
 });
