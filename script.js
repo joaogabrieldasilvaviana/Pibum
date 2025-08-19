@@ -1,27 +1,53 @@
-let carrinho = [];
+document.addEventListener("DOMContentLoaded", function () {
+  // Captura parâmetros da URL
+  const params = new URLSearchParams(window.location.search);
+  const produto = params.get("produto");
+  const preco = params.get("preco");
 
-// Função para adicionar produtos ao carrinho
-function adicionarAoCarrinho(nome, preco) {
-  const produto = { nome, preco };
-  carrinho.push(produto);
-  atualizarCarrinho();
-  alert(`${nome} foi adicionado ao seu carrinho!`);
-}
-
-// Função para atualizar o ícone do carrinho
-function atualizarCarrinho() {
-  const carrinhoButton = document.getElementById('carrinho');
-  const quantidade = carrinho.length;
-  
-  if (quantidade > 0) {
-    carrinhoButton.innerHTML = `<button onclick="irParaCarrinho()">Ir para o Carrinho (${quantidade} itens)</button>`;
-  } else {
-    carrinhoButton.innerHTML = `<button onclick="irParaCarrinho()">Ir para o Carrinho</button>`;
+  // Verifica se há itens na URL
+  if (produto && preco) {
+    // Adiciona o produto no carrinho
+    addItemToCart(produto, preco);
   }
-}
 
-// Função para redirecionar para a página de carrinho
-function irParaCarrinho() {
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  window.location.href = "carrinho.html";
-}
+  // Função para adicionar item no carrinho
+  function addItemToCart(produto, preco) {
+    const produtosCarrinho = document.getElementById("produtos-carrinho");
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("produto-carrinho");
+
+    const nomeProduto = document.createElement("p");
+    nomeProduto.textContent = produto;
+
+    const precoProduto = document.createElement("p");
+    precoProduto.textContent = `Preço: ${preco}`;
+
+    itemDiv.appendChild(nomeProduto);
+    itemDiv.appendChild(precoProduto);
+
+    produtosCarrinho.appendChild(itemDiv);
+
+    // Atualiza o total
+    updateTotal(preco);
+  }
+
+  // Função para atualizar o total
+  function updateTotal(preco) {
+    const totalElement = document.getElementById("total-preco");
+    let total = parseFloat(totalElement.textContent.replace('R$ ', '').replace(',', '.'));
+
+    if (isNaN(total)) total = 0;
+
+    const precoNumerico = parseFloat(preco.replace('R$', '').replace(',', '.'));
+
+    total += precoNumerico;
+    totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+  }
+
+  // Função para finalizar a compra
+  document.getElementById("finalizar-compra").addEventListener("click", function () {
+    // Redireciona para a página de pagamento
+    window.location.href = "pagamento.html";
+  });
+});
