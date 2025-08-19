@@ -1,31 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Scroll suave ao clicar nos links do menu
-  const links = document.querySelectorAll(".nav a[href^='#']");
-  links.forEach(link => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 60,
-          behavior: "smooth"
-        });
-      }
+  // Definindo um array para armazenar os itens do carrinho no localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Atualiza o contador do carrinho
+  const updateCartCount = () => {
+    const cartCount = document.getElementById('cart-count');
+    cartCount.textContent = cart.length;
+  };
+
+  // Adiciona o produto ao carrinho
+  const addToCart = (produto, preco) => {
+    const item = { produto, preco };
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    // Mostra o botão "Ir para o Carrinho" quando algum item for adicionado
+    document.getElementById('go-to-cart').style.display = 'block';
+  };
+
+  // Adiciona os eventos aos botões de "Adicionar ao Carrinho"
+  const addToCartButtons = document.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const produto = this.dataset.produto;
+      const preco = this.dataset.preco;
+      addToCart(produto, preco);
     });
   });
 
-  // Ação nos botões "Comprar"
-  const comprarBtns = document.querySelectorAll(".btn-small");
-  comprarBtns.forEach(btn => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const produto = this.parentElement.querySelector("h4").innerText;
-      const preco = this.parentElement.querySelector("span").innerText;
-
-      // Redireciona para carrinho com nome e preço na URL
-      const url = `carrinho.html?produto=${encodeURIComponent(produto)}&preco=${encodeURIComponent(preco)}`;
-      window.location.href = url;
-    });
+  // Vai para a página do carrinho
+  document.getElementById('go-to-cart').addEventListener('click', () => {
+    window.location.href = 'carrinho.html';
   });
+
+  // Atualiza o contador do carrinho na página inicial
+  updateCartCount();
 });
