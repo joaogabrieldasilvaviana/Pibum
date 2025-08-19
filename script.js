@@ -1,53 +1,105 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Captura parâmetros da URL
-  const params = new URLSearchParams(window.location.search);
-  const produto = params.get("produto");
-  const preco = params.get("preco");
+// Função para adicionar ao carrinho
+function addToCart(produto, preco) {
+  // Cria um objeto para o produto
+  const item = {
+    nome: produto,
+    preco: preco
+  };
 
-  // Verifica se há itens na URL
-  if (produto && preco) {
-    // Adiciona o produto no carrinho
-    addItemToCart(produto, preco);
-  }
+  // Recupera o carrinho do localStorage ou cria um novo
+  let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-  // Função para adicionar item no carrinho
-  function addItemToCart(produto, preco) {
-    const produtosCarrinho = document.getElementById("produtos-carrinho");
+  // Adiciona o item ao carrinho
+  carrinho.push(item);
 
-    const itemDiv = document.createElement("div");
-    itemDiv.classList.add("produto-carrinho");
+  // Armazena o carrinho atualizado no localStorage
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    const nomeProduto = document.createElement("p");
-    nomeProduto.textContent = produto;
+  // Atualiza o contador do carrinho no index.html
+  updateCartCount();
+}
 
-    const precoProduto = document.createElement("p");
-    precoProduto.textContent = `Preço: ${preco}`;
+// Função para atualizar o contador de itens no carrinho
+function updateCartCount() {
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  const contador = document.getElementById('cart-count');
+  contador.textContent = carrinho.length;
+}
 
-    itemDiv.appendChild(nomeProduto);
-    itemDiv.appendChild(precoProduto);
+// Função para carregar os itens do carrinho na página do carrinho
+function loadCartItems() {
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  const carrinhoContainer = document.getElementById('carrinho-items');
+  const totalElement = document.getElementById('total');
 
-    produtosCarrinho.appendChild(itemDiv);
+  // Limpa a lista de produtos
+  carrinhoContainer.innerHTML = '';
 
-    // Atualiza o total
-    updateTotal(preco);
-  }
+  let total = 0;
 
-  // Função para atualizar o total
-  function updateTotal(preco) {
-    const totalElement = document.getElementById("total-preco");
-    let total = parseFloat(totalElement.textContent.replace('R$ ', '').replace(',', '.'));
+  // Adiciona os itens do carrinho na página
+  carrinho.forEach(item => {
+    const itemElement = document.createElement('div');
+    itemElement.classList.add('item');
+    itemElement.innerHTML = `
+      <p>${item.nome}</p>
+      <span>${item.preco}</span>
+    `;
+    carrinhoContainer.appendChild(itemElement);
 
-    if (isNaN(total)) total = 0;
-
-    const precoNumerico = parseFloat(preco.replace('R$', '').replace(',', '.'));
-
-    total += precoNumerico;
-    totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-  }
-
-  // Função para finalizar a compra
-  document.getElementById("finalizar-compra").addEventListener("click", function () {
-    // Redireciona para a página de pagamento
-    window.location.href = "pagamento.html";
+    // Atualiza o valor total
+    total += parseFloat(item.preco.replace('R$', '').replace(',', '.'));
   });
+
+  // Exibe o valor total no carrinho
+  totalElement.textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+// Função para limpar o carrinho
+function clearCart() {
+  localStorage.removeItem('carrinho');
+  loadCartItems();
+  updateCartCount();
+}
+
+// Atualiza o contador do carrinho na inicialização
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartCount();
+
+  // Ação do botão de compra
+  const btns = document.querySelectorAll('.btn-small');
+  btns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Pega o nome e preço do produto
+      const produto = this.parentElement.querySelector('h4').innerText;
+      const preco = this.parentElement.querySelector('span').innerText;
+
+      // Adiciona ao carrinho
+      addToCart(produto, preco);
+    });
+  });
+
+  // Verifica se estamos na página do carrinho e carrega os itens
+  if (window.location.pathname.includes('carrinho.html')) {
+    loadCartItems();
+  }
+
+  // Verifica se estamos na página de aproveitamento do produto
+  if (window.location.pathname.includes('aproveite.html')) {
+    const escolhaFormaPagamento = document.getElementById('forma-pagamento');
+    if (escolhaFormaPagamento) {
+      escolhaFormaPagamento.addEventListener('change', (event) => {
+        console.log(`Forma de pagamento escolhida: ${event.target.value}`);
+      });
+    }
+  }
 });
+
+// Função para manipular a forma de pagamento no carrinho
+function finalizarCompra() {
+  // Aqui você pode adicionar lógica para escolher entre PIX ou Cartão
+  alert('Compra finalizada com sucesso!');
+  clearCart(); // Limpar carrinho após compra
+}
