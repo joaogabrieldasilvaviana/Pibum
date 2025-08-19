@@ -16,6 +16,10 @@
         <a href="#sobre">Sobre</a>
         <a href="#contato">Nomes e Números</a>
       </nav>
+      <!-- Carrinho -->
+      <div class="cart-icon" id="cart-icon">
+        🛒 <span id="cart-count">0</span>
+      </div>
     </div>
   </header>
 
@@ -34,25 +38,26 @@
         <div class="card">
           <img src="rtx5060" alt="PC Gamer Pro">
           <h4>PC Gamer Pro</h4>
-          <p>Pc Gamer OCEX - Intel i9 14900 KF - 64gb - RTX 3090 24Gb Strix White - Touchscreen 4k</p>
+          <p>Intel i9 14900 KF - 64GB - RTX 3090 24Gb Strix White - Touchscreen 4k</p>
           <span>R$ 5.499,00</span>
-          <a href="#" class="btn-small">Comprar</a>
+          <button class="btn-small add-to-cart" data-produto="PC Gamer Pro" data-preco="5.499,00">Adicionar ao Carrinho</button>
         </div>
         <div class="card">
           <img src="rtx4070" alt="PC Profissional">
           <h4>PC Profissional</h4>
-          <p>PC Gamer T6, Ryzen 9 7900, GeForce RTX 5070, DDR5 64GB, 2TB SSD NVMe, Gabinete Lateral de Vidro</p>
+          <p>Ryzen 9 7900 - RTX 5070 - 64GB DDR5 - 2TB SSD NVMe</p>
           <span>R$ 6.299,00</span>
-          <a href="#" class="btn-small">Comprar</a>
+          <button class="btn-small add-to-cart" data-produto="PC Profissional" data-preco="6.299,00">Adicionar ao Carrinho</button>
         </div>
         <div class="card">
           <img src="rtx6060" alt="Monte o Seu PC">
           <h4>Monte o Seu PC</h4>
           <p>Personalize com os melhores componentes</p>
           <span>Sob consulta</span>
-          <a href="#" class="btn-small">Começar</a>
+          <button class="btn-small add-to-cart" data-produto="Monte o Seu PC" data-preco="Sob consulta">Adicionar ao Carrinho</button>
         </div>
       </div>
+      <button class="btn" id="go-to-cart" style="display: none;">Ir para o Carrinho</button>
     </div>
   </section>
 
@@ -77,6 +82,5 @@
     </div>
   </footer>
   <script src="script.js"></script>
-
 </body>
 </html>
