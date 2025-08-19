@@ -3,91 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pibum - Seu PC com Potência e Profissionalismo</title>
+  <title>Pibum - PCs de Alta Performance</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container">
       <h1 class="logo">Pibum</h1>
       <nav class="nav">
-        <a href="#produtos">Produtos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contatos</a>
+        <a href="index.html">Início</a>
+        <a href="contato.html">Contato</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <h2>PCs de Alta Performance para Profissionais e Gamers</h2>
-      <p>Monte o seu setup ideal com os melhores componentes e suporte especializado.</p>
-      <a href="#produtos" class="btn">Ver Ofertas</a>
-    </div>
-  </section>
-
-  <!-- Produtos -->
   <section class="produtos" id="produtos">
     <div class="container">
       <h3>Mais Vendidos</h3>
+
+      <!-- Botões de categoria -->
+      <div class="categorias">
+        <a href="placas-video.html" class="btn-categoria">Placas de Vídeo</a>
+        <a href="pc-completo.html" class="btn-categoria">PCs Completos</a>
+        <a href="monitores.html" class="btn-categoria">Monitores</a>
+      </div>
+
+      <!-- Produtos -->
+      <h4>Placas de Vídeo</h4>
       <div class="cards">
         <div class="card">
-          <img src="rtx5060.jpg" alt="PC Gamer Pro">
+          <img src="rtx3050" alt="RTX 3050">
+          <h4>RTX 3050</h4>
+          <p>Placa de vídeo dedicada, ideal para jogos e edição de vídeos em 1080p</p>
+          <span>R$ 2.199,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+        <div class="card">
+          <img src="rtx4060" alt="RTX 4060">
+          <h4>RTX 4060</h4>
+          <p>Placa de vídeo com 12GB, para jogos e aplicações profissionais</p>
+          <span>R$ 3.399,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+        <div class="card">
+          <img src="rtx5070" alt="RTX 5070">
+          <h4>RTX 5070</h4>
+          <p>Desempenho de ponta para gamers e criadores de conteúdo 4K</p>
+          <span>R$ 4.999,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+      </div>
+
+      <!-- PCs Completos -->
+      <h4>PCs Completos</h4>
+      <div class="cards">
+        <div class="card">
+          <img src="rtx5060" alt="PC Gamer Pro">
           <h4>PC Gamer Pro</h4>
-          <p>Pc Gamer OCEX - Intel i9 14900 KF - 64GB - RTX 3090 24Gb Strix White - Touchscreen 4K</p>
+          <p>PC Gamer OCEX - Intel i9 14900 KF - 64GB - RTX 3090 24GB Strix White - Touchscreen 4K</p>
           <span>R$ 5.499,00</span>
-          <button class="btn-small" onclick="adicionarAoCarrinho('PC Gamer Pro', 'R$ 5.499,00')">Adicionar ao Carrinho</button>
+          <a href="#" class="btn-small">Comprar</a>
         </div>
         <div class="card">
-          <img src="rtx4070.jpg" alt="PC Profissional">
+          <img src="rtx4070" alt="PC Profissional">
           <h4>PC Profissional</h4>
-          <p>PC Gamer T6, Ryzen 9 7900, GeForce RTX 5070, DDR5 64GB, 2TB SSD NVMe</p>
+          <p>PC Gamer T6, Ryzen 9 7900, GeForce RTX 5070, 64GB DDR5, 2TB SSD NVMe</p>
           <span>R$ 6.299,00</span>
-          <button class="btn-small" onclick="adicionarAoCarrinho('PC Profissional', 'R$ 6.299,00')">Adicionar ao Carrinho</button>
+          <a href="#" class="btn-small">Comprar</a>
         </div>
         <div class="card">
-          <img src="rtx6060.jpg" alt="Monte o Seu PC">
-          <h4>Monte o Seu PC</h4>
-          <p>Personalize com os melhores componentes.</p>
-          <span>Sob consulta</span>
-          <button class="btn-small" onclick="adicionarAoCarrinho('Monte o Seu PC', 'Sob consulta')">Adicionar ao Carrinho</button>
+          <img src="rtx5090" alt="PC Workstation">
+          <h4>PC Workstation</h4>
+          <p>AMD Threadripper, 128GB RAM, RTX 5090, 4TB SSD para profissionais de alto desempenho</p>
+          <span>R$ 15.499,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+      </div>
+
+      <!-- Monitores -->
+      <h4>Monitores</h4>
+      <div class="cards">
+        <div class="card">
+          <img src="monitor1" alt="Monitor 27' 4K">
+          <h4>Monitor 27' 4K</h4>
+          <p>Monitor 4K Ultra HD, 27 polegadas com taxa de atualização de 144Hz</p>
+          <span>R$ 2.499,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+        <div class="card">
+          <img src="monitor2" alt="Monitor Curvo 32'">
+          <h4>Monitor Curvo 32'</h4>
+          <p>Monitor curvo com resolução Full HD e 165Hz de atualização</p>
+          <span>R$ 1.999,00</span>
+          <a href="#" class="btn-small">Comprar</a>
+        </div>
+        <div class="card">
+          <img src="monitor3" alt="Monitor 144Hz 27'">
+          <h4>Monitor 144Hz 27'</h4>
+          <p>Ideal para gamers, com painel IPS e 144Hz de taxa de atualização</p>
+          <span>R$ 2.199,00</span>
+          <a href="#" class="btn-small">Comprar</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sobre -->
-  <section class="sobre" id="sobre">
-    <div class="container">
-      <h3>Sobre a Pibum</h3>
-      <p>Na Pibum, oferecemos PCs de alta performance sob medida, com foco em qualidade, confiança e atendimento diferenciado.</p>
-    </div>
-  </section>
-
-  <!-- Contato -->
-  <section class="contato" id="contato">
-    <div class="container">
-      <h3>Feito por João e Reginaldo</h3>
-      <p>Num: 14 e 29</p>
-      <p>Colégio Estadual Barro Preto</p>
-    </div>
-  </section>
-
-  <!-- Carrinho e Botão -->
-  <div id="carrinho" class="carrinho">
-    <button onclick="irParaCarrinho()">Ir para o Carrinho</button>
-  </div>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Pibum. Todos os direitos reservados.</p>
     </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
