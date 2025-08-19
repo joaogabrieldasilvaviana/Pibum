@@ -3,68 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrinho de Compras - Pibum</title>
+  <title>Carrinho - Pibum</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container">
       <h1 class="logo">Pibum</h1>
-      <nav class="nav">
-        <a href="index.html">Início</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contatos</a>
-      </nav>
     </div>
   </header>
 
-  <!-- Carrinho -->
-  <section class="carrinho">
-    <div class="container">
-      <h3>Seu Carrinho</h3>
-      <div id="produtos-carrinho"></div>
-      <div class="total">
-        <h4>Total:</h4>
-        <span id="total-preco">R$ 0,00</span>
-      </div>
-      <button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
+  <main class="container carrinho">
+    <h2>Seu Carrinho</h2>
+    <div id="produtos-carrinho">
+      <!-- Os produtos serão inseridos aqui via JavaScript -->
     </div>
-  </section>
+    <div class="total">
+      <h4>Total</h4>
+      <span id="total-preco">R$ 0,00</span>
+    </div>
+    <button class="btn" id="finalizar-compra">Finalizar Compra</button>
+  </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Pibum. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <script>
-    // Carregar os itens do carrinho
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-    const produtosCarrinhoDiv = document.getElementById('produtos-carrinho');
-    const totalPrecoDiv = document.getElementById('total-preco');
-
-    let total = 0;
-    carrinho.forEach((item) => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.classList.add('produto-carrinho');
-      produtoDiv.innerHTML = `
-        <h5>${item.nome}</h5>
-        <span>${item.preco}</span>
-      `;
-      produtosCarrinhoDiv.appendChild(produtoDiv);
-      total += parseFloat(item.preco.replace('R$', '').replace(',', '.'));
-    });
-
-    totalPrecoDiv.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-
-    // Finalizar a compra
-    function finalizarCompra() {
-      alert('Compra finalizada! Agradecemos pela sua compra.');
-      localStorage.removeItem('carrinho');
-      window.location.href = 'aproveite.html';
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
