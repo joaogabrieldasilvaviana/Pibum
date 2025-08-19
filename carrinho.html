@@ -15,10 +15,13 @@
 
   <main class="container">
     <h2>Seu Carrinho</h2>
-    <div class="card" style="padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
-      <h3 id="nome-produto"></h3>
-      <p id="preco-produto"></p>
-      <button class="btn">Finalizar Compra</button>
+    <div id="cart-items"></div>
+
+    <!-- Formulário de pagamento -->
+    <div>
+      <h3>Escolha a forma de pagamento:</h3>
+      <button class="btn" id="pix-btn">PIX</button>
+      <button class="btn" id="cartao-btn">Cartão</button>
     </div>
   </main>
 
@@ -29,14 +32,33 @@
   </footer>
 
   <script>
-    // Captura parâmetros da URL
-    const params = new URLSearchParams(window.location.search);
-    const produto = params.get("produto");
-    const preco = params.get("preco");
+    document.addEventListener("DOMContentLoaded", function () {
+      // Carrega o carrinho
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Exibe os dados na página
-    document.getElementById("nome-produto").textContent = produto || "Produto não especificado";
-    document.getElementById("preco-produto").textContent = preco ? `Preço: ${preco}` : "Preço não informado";
+      // Exibe os itens no carrinho
+      const cartItemsDiv = document.getElementById("cart-items");
+      if (cart.length > 0) {
+        cart.forEach(item => {
+          const itemDiv = document.createElement("div");
+          itemDiv.innerHTML = `<p>${item.produto} - R$ ${item.preco}</p>`;
+          cartItemsDiv.appendChild(itemDiv);
+        });
+      } else {
+        cartItemsDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
+      }
+
+      // Forma de pagamento
+      document.getElementById("pix-btn").addEventListener("click", function () {
+        alert("Você escolheu pagamento por PIX!");
+        window.location.href = "aproveite.html";
+      });
+
+      document.getElementById("cartao-btn").addEventListener("click", function () {
+        alert("Você escolheu pagamento com Cartão!");
+        window.location.href = "aproveite.html";
+      });
+    });
   </script>
 </body>
 </html>
