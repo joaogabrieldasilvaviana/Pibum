@@ -15,7 +15,7 @@
       <nav class="nav">
         <a href="#produtos">Produtos</a>
         <a href="#sobre">Sobre</a>
-        <a href="#contato">Nomes e Números</a>
+        <a href="#contato">Contatos</a>
       </nav>
     </div>
   </header>
@@ -35,25 +35,25 @@
       <h3>Mais Vendidos</h3>
       <div class="cards">
         <div class="card">
-          <img src="rtx5060" alt="PC Gamer Pro">
+          <img src="rtx5060.jpg" alt="PC Gamer Pro">
           <h4>PC Gamer Pro</h4>
-          <p>Pc Gamer OCEX - Intel i9 14900 KF - 64gb - RTX 3090 24Gb Strix White - Touchscreen 4k</p>
+          <p>Pc Gamer OCEX - Intel i9 14900 KF - 64GB - RTX 3090 24Gb Strix White - Touchscreen 4K</p>
           <span>R$ 5.499,00</span>
-          <a href="#" class="btn-small">Comprar</a>
+          <button class="btn-small" onclick="adicionarAoCarrinho('PC Gamer Pro', 'R$ 5.499,00')">Adicionar ao Carrinho</button>
         </div>
         <div class="card">
-          <img src="rtx4070" alt="PC Profissional">
+          <img src="rtx4070.jpg" alt="PC Profissional">
           <h4>PC Profissional</h4>
-          <p>PC Gamer T6, Ryzen 9 7900, GeForce RTX 5070, DDR5 64GB, 2TB SSD NVMe, Gabinete Lateral de Vidro</p>
+          <p>PC Gamer T6, Ryzen 9 7900, GeForce RTX 5070, DDR5 64GB, 2TB SSD NVMe</p>
           <span>R$ 6.299,00</span>
-          <a href="#" class="btn-small">Comprar</a>
+          <button class="btn-small" onclick="adicionarAoCarrinho('PC Profissional', 'R$ 6.299,00')">Adicionar ao Carrinho</button>
         </div>
         <div class="card">
-          <img src="rtx6060" alt="Monte o Seu PC">
+          <img src="rtx6060.jpg" alt="Monte o Seu PC">
           <h4>Monte o Seu PC</h4>
-          <p>Personalize com os melhores componentes</p>
+          <p>Personalize com os melhores componentes.</p>
           <span>Sob consulta</span>
-          <a href="#" class="btn-small">Começar</a>
+          <button class="btn-small" onclick="adicionarAoCarrinho('Monte o Seu PC', 'Sob consulta')">Adicionar ao Carrinho</button>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
   <section class="sobre" id="sobre">
     <div class="container">
       <h3>Sobre a Pibum</h3>
-      <p>Na Pibum, oferecemos PCs de alta performance sob medida, com foco em qualidade, confiança e atendimento diferenciado. Combinamos os melhores componentes do mercado com suporte técnico especializado para garantir a sua satisfação.</p>
+      <p>Na Pibum, oferecemos PCs de alta performance sob medida, com foco em qualidade, confiança e atendimento diferenciado.</p>
     </div>
   </section>
 
@@ -71,10 +71,15 @@
   <section class="contato" id="contato">
     <div class="container">
       <h3>Feito por João e Reginaldo</h3>
-      <p>Numero: 14 e 29</p>
+      <p>Num: 14 e 29</p>
       <p>Colégio Estadual Barro Preto</p>
     </div>
   </section>
+
+  <!-- Carrinho e Botão -->
+  <div id="carrinho" class="carrinho">
+    <button onclick="irParaCarrinho()">Ir para o Carrinho</button>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
