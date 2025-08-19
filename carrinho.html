@@ -3,28 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrinho - Pibum</title>
+  <title>Carrinho de Compras - Pibum</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <h1 class="logo">Pibum</h1>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contatos</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h2>Seu Carrinho</h2>
-    <div id="cart-items"></div>
-
-    <!-- Formulário de pagamento -->
-    <div>
-      <h3>Escolha a forma de pagamento:</h3>
-      <button class="btn" id="pix-btn">PIX</button>
-      <button class="btn" id="cartao-btn">Cartão</button>
+  <!-- Carrinho -->
+  <section class="carrinho">
+    <div class="container">
+      <h3>Seu Carrinho</h3>
+      <div id="produtos-carrinho"></div>
+      <div class="total">
+        <h4>Total:</h4>
+        <span id="total-preco">R$ 0,00</span>
+      </div>
+      <button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
-  </main>
+  </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Pibum. Todos os direitos reservados.</p>
@@ -32,33 +40,31 @@
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Carrega o carrinho
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Carregar os itens do carrinho
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const produtosCarrinhoDiv = document.getElementById('produtos-carrinho');
+    const totalPrecoDiv = document.getElementById('total-preco');
 
-      // Exibe os itens no carrinho
-      const cartItemsDiv = document.getElementById("cart-items");
-      if (cart.length > 0) {
-        cart.forEach(item => {
-          const itemDiv = document.createElement("div");
-          itemDiv.innerHTML = `<p>${item.produto} - R$ ${item.preco}</p>`;
-          cartItemsDiv.appendChild(itemDiv);
-        });
-      } else {
-        cartItemsDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
-      }
-
-      // Forma de pagamento
-      document.getElementById("pix-btn").addEventListener("click", function () {
-        alert("Você escolheu pagamento por PIX!");
-        window.location.href = "aproveite.html";
-      });
-
-      document.getElementById("cartao-btn").addEventListener("click", function () {
-        alert("Você escolheu pagamento com Cartão!");
-        window.location.href = "aproveite.html";
-      });
+    let total = 0;
+    carrinho.forEach((item) => {
+      const produtoDiv = document.createElement('div');
+      produtoDiv.classList.add('produto-carrinho');
+      produtoDiv.innerHTML = `
+        <h5>${item.nome}</h5>
+        <span>${item.preco}</span>
+      `;
+      produtosCarrinhoDiv.appendChild(produtoDiv);
+      total += parseFloat(item.preco.replace('R$', '').replace(',', '.'));
     });
+
+    totalPrecoDiv.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    // Finalizar a compra
+    function finalizarCompra() {
+      alert('Compra finalizada! Agradecemos pela sua compra.');
+      localStorage.removeItem('carrinho');
+      window.location.href = 'aproveite.html';
+    }
   </script>
 </body>
 </html>
