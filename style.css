@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #00aaff, #0044cc);
+  background: #0A0A0A;
   color: #fff;
   padding-top: 60px;
 }
@@ -20,13 +20,13 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px 0;
   z-index: 1000;
 }
 
 .header .logo {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #fff;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .nav a:hover {
-  color: #f4a261;
+  color: #4C9FFF;
 }
 
 .produtos {
@@ -65,23 +65,23 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #333;
+  padding: 15px 25px;
+  background-color: #2C2C2C;
   color: #fff;
   font-size: 1.1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   text-decoration: none;
   width: 180px;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .btn-categoria:hover {
-  background-color: #f4a261;
-  transform: scale(1.1);
+  background-color: #4C9FFF;
+  transform: scale(1.05);
 }
 
 .btn-categoria img {
-  width: 40px;
+  width: 35px;
   margin-right: 15px;
 }
 
@@ -94,7 +94,44 @@ h3 {
 
 .card {
   background-color: #222;
-  .btn-small {
+  width: 300px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-10px);
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.card h4 {
+  margin: 15px 0;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.card span {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4C9FFF;
+}
+
+.btn-small {
   background-color: transparent;
   border: 2px solid #fff;
   color: #fff;
@@ -106,9 +143,19 @@ h3 {
 }
 
 .btn-small:hover {
-  background-color: #f4a261;
-  border-color: #f4a261;
+  background-color: #4C9FFF;
+  border-color: #4C9FFF;
   color: #fff;
   transform: scale(1.1);
 }
 
+.footer {
+  background-color: #1A1A1A;
+  padding: 20px 0;
+  text-align: center;
+  color: #bbb;
+}
+
+.footer p {
+  font-size: 1rem;
+}
