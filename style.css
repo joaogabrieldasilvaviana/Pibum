@@ -94,3 +94,21 @@ h3 {
 
 .card {
   background-color: #222;
+  .btn-small {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+  background-color: #f4a261;
+  border-color: #f4a261;
+  color: #fff;
+  transform: scale(1.1);
+}
+
